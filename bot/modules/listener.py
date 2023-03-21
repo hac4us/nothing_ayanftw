@@ -52,15 +52,15 @@ class MirrorLeechListener:
         self.u_index = u_index
         self.queuedUp = False
 
-   # def clean(self):
-    #    try:
-     #       with status_reply_dict_lock:
-      #          Interval[0].cancel()
-       #         Interval.clear()
-        #    aria2.purge()
-         #   delete_all_messages()
-        #except:
-         #   pass
+    def clean(self):
+        try:
+            with status_reply_dict_lock:
+                Interval[0].cancel()
+                Interval.clear()
+            aria2.purge()
+            delete_all_messages()
+        except:
+            pass
 
     def onDownloadStart(self):
         if not self.isPrivate and config_dict['INCOMPLETE_TASK_NOTIFIER'] and DATABASE_URL:
